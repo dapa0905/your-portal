@@ -1,0 +1,18 @@
+
+# --- Java / Spring Boot (service-api) ---
+/service-api/target/
+/service-api/.gradle/
+/service-api/build/
+*.class
+
+# --- Angular (service-front) ---
+/service-front/node_modules
+/service-front/dist
+/service-front/.angular/cache
+npm-debug.log
+
+# --- IDE Files ---
+.DS_Store
+.vscode/
+*.iml
+.idea/

@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidebar">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span routerLink="/dashboard" style="cursor: pointer"> 서비스 포털 </span>
+
+  <span class="toolbar-spacer"></span>
+
+  <button mat-button (click)="logout()"><mat-icon>logout</mat-icon> 로그아웃</button>
+</mat-toolbar>

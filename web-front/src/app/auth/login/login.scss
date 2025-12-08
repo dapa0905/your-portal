@@ -1,0 +1,36 @@
+/* web-front/src/app/auth/login/login.component.scss */
+
+// 1. 전체 화면 컨테이너 설정 (로그인 카드를 중앙에 배치)
+.login-container {
+  // 뷰포트 높이 전체를 사용
+  height: 100vh;
+  // Flexbox를 사용하여 내용을 수직 및 수평 중앙에 배치
+  display: flex;
+  justify-content: center; // 수평 중앙 정렬
+  align-items: center; // 수직 중앙 정렬
+  background-color: #f5f5f5; // 배경색을 약간 회색으로 설정 (선택 사항)
+}
+
+// 2. 로그인 카드 스타일 정의
+.login-card {
+  // 카드 자체의 최대 너비를 제한하여 너무 넓어지는 것을 방지
+  max-width: 400px;
+  width: 100%;
+  // 카드에 약간의 그림자를 추가하여 입체감을 더합니다 (Material 기본 설정에 추가)
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+// 3. 입력 필드 간격 조정
+// MatFormField는 mat-form-field 태그로 생성됩니다.
+mat-form-field {
+  width: 100%; // 필드 너비를 카드에 꽉 채웁니다.
+  margin-bottom: 20px; // ⭐️ 각 입력 필드 아래에 20px 간격을 추가합니다. ⭐️
+}
+
+// 4. 버튼 스타일 조정
+button[mat-raised-button] {
+  width: 100%; // 버튼 너비를 카드에 꽉 채웁니다.
+  padding: 10px 0;
+  font-size: 16px;
+}

@@ -1,0 +1,39 @@
+<mat-card class="settings-card">
+  <mat-card-header>
+    <mat-card-title>사용자 설정</mat-card-title>
+    <mat-card-subtitle>개인 정보 및 환경 설정을 관리합니다.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSave()" class="settings-form">
+      <h3>개인 정보</h3>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>사용자 이름</mat-label>
+        <input matInput [(ngModel)]="userName" name="userName" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>이메일</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" disabled />
+        <mat-hint>이메일은 변경할 수 없습니다.</mat-hint>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+
+      <h3>알림 설정</h3>
+
+      <mat-slide-toggle
+        class="toggle-spacing"
+        [(ngModel)]="notificationsEnabled"
+        name="notifications"
+      >
+        이메일 알림 수신
+      </mat-slide-toggle>
+
+      <mat-divider></mat-divider>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="onSave()">설정 저장</button>
+  </mat-card-actions>
+</mat-card>
