@@ -51,6 +51,6 @@ public class User {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Role role = Role.GOVERNMENT;
+    private Role role = Role.ROLE_EMPLOYEE;
 
 }

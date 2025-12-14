@@ -1,0 +1,22 @@
+/* web-front/src/app/pages/employee/lateness-reason/lateness-reason.component.scss */
+
+.lateness-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.lateness-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 15px;
+}
+
+.form-field-half {
+  flex: 1 1 calc(50% - 15px);
+}
+
+.form-field-full {
+  width: 100%;
+}

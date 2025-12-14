@@ -1,0 +1,76 @@
+<mat-card class="status-card">
+  <mat-card-header>
+    <mat-card-title>신청 처리 현황</mat-card-title>
+    <mat-card-subtitle>제출하신 모든 신청서의 승인 및 처리 상태를 확인합니다.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="filter-section">
+      <mat-form-field appearance="outline">
+        <mat-label>신청 유형</mat-label>
+        <mat-select [(ngModel)]="selectedType" (selectionChange)="onFilterChange(selectedType)">
+          <mat-option *ngFor="let type of applicationTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="full-width-table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="typeKr">
+          <th mat-header-cell *matHeaderCellDef>유형</th>
+          <td mat-cell *matCellDef="let element">
+            <span [class]="'type-' + element.type.toLowerCase()">{{ element.typeKr }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>신청 내용</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="requestDate">
+          <th mat-header-cell *matHeaderCellDef>신청일</th>
+          <td mat-cell *matCellDef="let element">{{ element.requestDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>상태</th>
+          <td mat-cell *matCellDef="let element">
+            <span [class]="'status-' + element.status.toLowerCase()">
+              {{
+                element.status === 'Pending'
+                  ? '처리 대기'
+                  : element.status === 'Approved'
+                  ? '승인 완료'
+                  : '반려됨'
+              }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>상세</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="onViewDetails(element)">
+              <mat-icon>launch</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <div *ngIf="dataSource.length === 0" class="no-data-message">
+        조회된 신청 내역이 없습니다.
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

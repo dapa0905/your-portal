@@ -4,12 +4,49 @@
       <a mat-list-item routerLink="/dashboard/overview">
         <mat-icon>dashboard</mat-icon> 대시보드
       </a>
+      <ng-container *ngIf="userRole === 'ROLE_EMPLOYEE'">
+        <h3 mat-subheader>인사</h3>
+
+        <a mat-list-item routerLink="/dashboard/employee/profile">
+          <mat-icon>person</mat-icon> 개인 정보/인사
+        </a>
+
+        <a mat-list-item routerLink="/dashboard/employee/application-status">
+          <mat-icon>list_alt</mat-icon> 신청 처리 현황
+        </a>
+
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>신청서 작성</h3>
+
+        <a mat-list-item routerLink="/dashboard/employee/leave-request">
+          <mat-icon>date_range</mat-icon> 유급 휴가 작성
+        </a>
+
+        <a mat-list-item routerLink="/dashboard/employee/payslip">
+          <mat-icon>account_balance_wallet</mat-icon> 월급 명세서
+        </a>
+
+        <a mat-list-item routerLink="/dashboard/employee/expense-form">
+          <mat-icon>receipt</mat-icon> 경비 처리 작성
+        </a>
+
+        <a mat-list-item routerLink="/dashboard/employee/schedule-form">
+          <mat-icon>access_time</mat-icon> 근무표 작성
+        </a>
+
+        <a mat-list-item routerLink="/dashboard/employee/lateness-reason">
+          <mat-icon>assignment_late</mat-icon> 지각 사유 작성
+        </a>
+      </ng-container>
+
+      <mat-divider></mat-divider>
       <a mat-list-item routerLink="/dashboard/settings"> <mat-icon>settings</mat-icon> 설정 </a>
+      <a mat-list-item routerLink="/dashboard/users"> <mat-icon>group</mat-icon> 사용자 관리 </a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-header [sidenav]="sidenav"></app-header>
+    <app-header [sidenav]="sidenav" [opened]="isSidebarOpen"></app-header>
 
     <div class="main-content">
       <router-outlet></router-outlet>

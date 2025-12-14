@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,6 +28,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 })
 export class DashboardComponent {
   constructor(private authService: AuthService) {}
+
+  isSidebarOpen: boolean = false;
+
+  userRole: string = '';
+  ngOnInit(): void {
+    this.userRole = this.authService.getUserRole();
+  }
 
   logout(): void {
     this.authService.logout();

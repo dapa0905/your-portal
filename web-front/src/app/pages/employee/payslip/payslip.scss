@@ -1,0 +1,41 @@
+/* web-front/src/app/pages/employee/payslip/payslip.component.scss */
+
+.payslip-card {
+  margin: 20px;
+  padding: 20px;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-section mat-form-field {
+  width: 200px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-column-netPay {
+  font-weight: 700;
+  color: #1a73e8; /* 실수령액을 파란색으로 강조 */
+}
+
+.status-completed {
+  color: green;
+  font-weight: 500;
+}
+
+.no-data-message {
+  padding: 20px;
+  text-align: center;
+  color: #757575;
+}

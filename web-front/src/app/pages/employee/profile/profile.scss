@@ -1,0 +1,27 @@
+/* web-front/src/app/pages/employee/profile/profile.component.scss */
+
+.profile-card {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.profile-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* 필드 간 간격 */
+  padding-top: 15px;
+}
+
+.form-field-half {
+  flex: 1 1 calc(50% - 15px); /* 가로 50% 너비 */
+}
+
+.form-field-full {
+  width: 100%;
+}
+
+mat-divider {
+  width: 100%;
+  margin: 20px 0;
+}

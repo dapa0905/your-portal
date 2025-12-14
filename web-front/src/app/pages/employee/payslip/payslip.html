@@ -1,0 +1,66 @@
+<mat-card class="payslip-card">
+  <mat-card-header>
+    <mat-card-title>월급 명세서 조회</mat-card-title>
+    <mat-card-subtitle>급여 지급 내역을 확인하고 명세서를 열람할 수 있습니다.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="filter-section">
+      <mat-form-field appearance="outline">
+        <mat-label>조회 연도</mat-label>
+        <mat-select [value]="selectedYear" (valueChange)="onYearChange($event)">
+          <mat-option *ngFor="let year of availableYears" [value]="year"> {{ year }}년 </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="full-width-table">
+        <ng-container matColumnDef="payPeriod">
+          <th mat-header-cell *matHeaderCellDef>지급 기간</th>
+          <td mat-cell *matCellDef="let element">{{ element.payPeriod }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentDate">
+          <th mat-header-cell *matHeaderCellDef>지급일</th>
+          <td mat-cell *matCellDef="let element">{{ element.paymentDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="grossPay">
+          <th mat-header-cell *matHeaderCellDef>총 급여</th>
+          <td mat-cell *matCellDef="let element">{{ formatCurrency(element.grossPay) }} 원</td>
+        </ng-container>
+
+        <ng-container matColumnDef="netPay">
+          <th mat-header-cell *matHeaderCellDef>실 수령액</th>
+          <td mat-cell *matCellDef="let element">**{{ formatCurrency(element.netPay) }} 원**</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>상태</th>
+          <td mat-cell *matCellDef="let element">
+            <span [class.status-completed]="element.status === 'Completed'">{{
+              element.status === 'Completed' ? '지급 완료' : element.status
+            }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>명세서</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="onViewPayslip(element)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <div *ngIf="dataSource.length === 0" class="no-data-message">
+        조회된 급여 명세서가 없습니다.
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,52 @@
+<mat-card class="schedule-card">
+  <mat-card-header>
+    <mat-card-title>근무표 작성</mat-card-title>
+    <mat-card-subtitle>일일 근무 시간 및 내용을 기록하여 제출합니다.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" class="schedule-form">
+      <mat-form-field appearance="outline" class="form-field-full">
+        <mat-label>근무 일자</mat-label>
+        <input matInput [matDatepicker]="workDatePicker" formControlName="workDate" required />
+        <mat-datepicker-toggle matSuffix [for]="workDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #workDatePicker></mat-datepicker>
+        <mat-error *ngIf="scheduleForm.get('workDate')?.hasError('required')">
+          근무 일자를 선택해주세요.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field-half">
+        <mat-label>시작 시간 (HH:MM)</mat-label>
+        <input matInput formControlName="startTime" type="time" placeholder="예: 09:00" required />
+        <mat-error *ngIf="scheduleForm.get('startTime')?.hasError('required')">
+          시작 시간을 입력해주세요.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field-half">
+        <mat-label>종료 시간 (HH:MM)</mat-label>
+        <input matInput formControlName="endTime" type="time" placeholder="예: 18:00" required />
+        <mat-error *ngIf="scheduleForm.get('endTime')?.hasError('required')">
+          종료 시간을 입력해주세요.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field-full">
+        <mat-label>근무 내용/메모 (선택 사항)</mat-label>
+        <textarea matInput formControlName="memo" rows="3"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="scheduleForm.invalid"
+    >
+      <mat-icon>schedule</mat-icon> 근무표 제출
+    </button>
+  </mat-card-actions>
+</mat-card>

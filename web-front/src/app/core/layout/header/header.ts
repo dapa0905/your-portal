@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   @Input() sidenav!: MatSidenav;
-
+  @Input() opened: boolean = false;
   constructor(private authService: AuthService) {}
 
   logout(): void {

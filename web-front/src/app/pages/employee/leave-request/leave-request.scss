@@ -1,0 +1,22 @@
+/* web-front/src/app/pages/employee/leave-request/leave-request.component.scss */
+
+.leave-card {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.leave-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 15px;
+}
+
+.form-field-half {
+  flex: 1 1 calc(50% - 15px);
+}
+
+.form-field-full {
+  width: 100%;
+}
