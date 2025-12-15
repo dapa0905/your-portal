@@ -56,7 +56,11 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
 
-        window.location.reload();
+        this.router.navigate(['/dashboard']).then(() => {
+          // 필요하다면 페이지 이동 후 새로고침 대신 토큰을 확인하도록 설정할 수도 있습니다.
+          // 여기서는 페이지 이동 후 새로고침을 제거합니다.
+          // window.location.reload();
+        });
       },
       error: (err: HttpErrorResponse) => {
         console.error('Login Error Response:', err);

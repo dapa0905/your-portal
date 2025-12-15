@@ -20,14 +20,17 @@ import com.service.portal.web_back.security.jwt.JwtAuthenticationFilter;
 import com.service.portal.web_back.security.jwt.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
+// @EnableMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
+@Slf4j
 public class SecurityConfig {
 
     private final JwtUtil jwtUtil;
@@ -35,7 +38,10 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        // return new BCryptPasswordEncoder();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+
     }
 
     @Bean
@@ -67,6 +73,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/public/**").permitAll()
+                        .requestMatchers("/api/employee/**").authenticated()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
